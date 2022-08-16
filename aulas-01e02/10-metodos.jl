@@ -13,6 +13,7 @@ fun1(2,3)
 # Vamos implementar um outro método de fun1 que funciona com qualquer tipo que seja Number, exceto Float64
 fun1(x::Number, y::Number) = 2x - y
 
+fun1(x::AbstractFloat, y::AbstractFloat) = x - 2y
 fun1(2.0, 3)
 fun1(2.0, 3.0f0)
 fun1(1, 1//2)

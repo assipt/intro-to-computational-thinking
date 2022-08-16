@@ -67,7 +67,7 @@ typeof(Int8(-123) + Int8(10))
 typeof(Int8(-123) + 10)
 
 # Existem inteiros sem sinal.
-Imprime em hexadecimal mas não faz diferença
+#Imprime em hexadecimal mas não faz diferença
 
 UInt(23)
 typeof(UInt(23))

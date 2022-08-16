@@ -6,6 +6,7 @@ x = 1.23
 # É possível usar caracteres unicodes
 β = 2*x
 
+
 δ = 2β  # Quando multiplicando um número por uma variável, não precisa colocar *
 
 1/2*3  # Na verdade é (1/2) * 3

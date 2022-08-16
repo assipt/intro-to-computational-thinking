@@ -8,6 +8,7 @@ v1 = [1,2,3,4,5,6]
 ndims(v1)
 length(v1)
 size(v1)
+size(v1,1)
 eltype(v1)
 
 # Para acessar um elemento
@@ -264,7 +265,7 @@ using LinearAlgebra
 dot(x,y)
 
 x ⋅ y
-
+x ⋅ y
 # Com essa notação de ponto dá para fazer milagre
 
 z = sin.(x)

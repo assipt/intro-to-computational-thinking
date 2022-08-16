@@ -51,10 +51,11 @@ s2 = "world"
 
 string(s1, ", ", s2, ".\n")
 
-
+sizeof("🐱")
 # * concatena (maioria das linguagens é +)
 s1 * ", " * s2 * ".\n"
 
+"ABC"^3
 
 # Interpolação de strings
 # Muito conveniente!

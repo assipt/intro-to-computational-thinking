@@ -86,7 +86,7 @@ end
 
 
 # Assim, estas construção são úteis para casos assim
-
+cond = true
 if cond  # Condição é verdadeira
     println("Cond verdadeira")
 end
@@ -95,9 +95,9 @@ end
 cond && println("Cond verdadeira")
 
 # Da mesma maneira,
-
+cond = false
 if !cond
-    prinlnt("Cond não é verdadeira")
+    println("Cond não é verdadeira")
 end
 
 cond || println("Cond não é verdadeira")
@@ -110,7 +110,11 @@ let a=1, b=2
     aa + aa*bb
 end
 
-     
+((a,b)->begin
+    aa=2a
+    bb=b*b
+    aa+aa*bb
+end)(1,2)
 
 #=====================
  Laços e repetições
@@ -155,6 +159,11 @@ function somarmax(n, smax)
         s += i
         i += 1
         s > smax && break
+        #=
+        if s > smax
+            break
+        end
+        =#
     end
     return s
 end
