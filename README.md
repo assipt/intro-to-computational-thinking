@@ -23,6 +23,7 @@ Se você precisar de ajuda, dê uma olhada nos links abaixo
  * Wikibook <https://en.wikibooks.org/wiki/Introducing_Julia>
  * Livro sobre data science em Julia <https://juliadatascience.io/>
  * Curso tosco que eu dei para o pessoal do túnel de vento: <http://julia.vento.eng.br/>
+ * Curso ministrado para grupo de pós graduação da USP São Carlos: <https://github.com/gborelli89/TMAE-Tropicus>
  
 ## Instalação no Windows
 
@@ -83,3 +84,13 @@ julia> import Pkg; Pkg.add("Pluto")
 
 julia> import Pluto; Pluto.run()
 ```
+
+## Material envolvendo álgebra linear e matemática aplicada
+
+### Cursos MIT
+ * 18.06 - Linear Algebra <https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/>
+ * 18.085 - Computational Science and Engineering I <https://ocw.mit.edu/courses/18-085-computational-science-and-engineering-i-fall-2008/>
+ * 18.086 - Mathematical Methods for Engineers II <https://ocw.mit.edu/courses/18-086-mathematical-methods-for-engineers-ii-spring-2006/>
+
+### Canal YouTube
+ * Prof. Steve Brunton <https://www.youtube.com/c/Eigensteve>
