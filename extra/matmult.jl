@@ -64,10 +64,19 @@ Esta função `mul!`, por sua vez, *pode* chamar, nas circunstâncias corretas, 
 
 A função genérica `mul!` tem dois métodos em particular que são importantes para esta discussão: 
 
- * `mul!(C,A,B)` - $C = A⋅B$
- * `mul!(C,A,B,α,β)` - $C = αAB + βC$
+ * `mul!(C,A,B)` : $C = A⋅B$
+ * `mul!(C,A,B,α,β)` : $C = αAB + βC$
 
 Além disso, os métodos acima podem trabalhar com as matrizes e suas transpostas!
+"""
+
+# ╔═╡ 3693b7b5-c535-4835-b36d-4ceaf7ca7507
+md"""
+O código desta apresentação foi modificado a partir dos seguintes cósigos:
+
+ * <https://opensourc.es/blog/matrix-multiplication-performance/>
+ * <https://github.com/stevengj/18a01/blob/master/memory-matrices.ipynb>
+
 """
 
 # ╔═╡ f06f511b-463c-4004-99f7-bf81b9ffc152
@@ -387,7 +396,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.8.0"
 manifest_format = "2.0"
-project_hash = "83eb1b5d354d6152769fb3e7d274882255bb0edf"
+project_hash = "1b2dda5cded89832fbefd09c358c484b09d2dc35"
 
 [[deps.AbstractFFTs]]
 deps = ["ChainRulesCore", "LinearAlgebra"]
@@ -1701,6 +1710,7 @@ version = "3.5.0+0"
 # ╟─f02b7a78-2d75-11ed-3673-d5c7e8b9affc
 # ╠═2413fd7b-4538-4702-aa77-90cf6b59a5f1
 # ╟─eb949902-a360-4d6d-936b-79152958c7d6
+# ╟─3693b7b5-c535-4835-b36d-4ceaf7ca7507
 # ╟─f06f511b-463c-4004-99f7-bf81b9ffc152
 # ╠═3f93153f-6a74-42b6-bbca-205ca92d2281
 # ╠═af82b64c-8b66-4f7b-8299-c8fd9dab7b91
