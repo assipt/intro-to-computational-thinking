@@ -129,8 +129,14 @@ function babilonia(x, N=8)
 	return t
 end
 
+# ╔═╡ f3eb1135-a98b-41c5-b771-b29173e6b5a1
+babilonia(2.0)
+
+# ╔═╡ b9c947aa-f357-4582-89f1-6e4b3511d072
+sqrt(2)
+
 # ╔═╡ 8cea8292-c9ba-4e73-b03f-9c84691d9879
-babilonia(2,6)
+babilonia(2.0,4)
 
 # ╔═╡ 9c0115f5-6991-48d4-bedd-2746fcd59e9f
 md"""
@@ -142,10 +148,13 @@ md"""
 N = 1:15
 
 # ╔═╡ 99b24a21-8b81-4844-a5f6-6a449da90029
-S = babilonia.(2.0, N)
+S = babilonia.(big(2.0), N)
+
+# ╔═╡ 9c7b466c-97c2-4ffc-baf4-43e600c09b97
+babilonia(big"2.0", 5)
 
 # ╔═╡ b5d95f86-0cd8-4707-86dc-37f6119e94da
-ε = abs.(S .- sqrt(2))
+ε = (abs.(S .- sqrt(big(2.0))))
 
 # ╔═╡ dfacc35b-fa6c-4237-a547-3e82057d5817
 plot(N, ε, markershape=:circle, label="|ε|")
@@ -171,8 +180,11 @@ let
 end
 	
 
+# ╔═╡ f49f18da-b792-4e16-a9b5-903f957abdd6
+x
+
 # ╔═╡ b02cd2da-8502-4fba-8376-1f37a6a9feb8
-babilonia(x,2)
+babilonia(x,10)
 
 # ╔═╡ 07dc7322-e806-4d2f-8d53-eada348dc1c4
 md"""
@@ -196,8 +208,8 @@ Também podemos implementar isso em Julia:
 
 # ╔═╡ 7239623d-9ed2-44bf-aa15-2f0cd0f18f83
 md"""
- **Δx** $(@bind δx Slider(0.01:0.01:2, default=1.0)) 
- **x** $(@bind x0 Slider(0.01:0.01:10, default=2.0)) 
+ **Δx =** $(@bind δx Slider(0.01:0.01:2, default=1.0, show_value=true)) **,**  
+ **x =** $(@bind x0 Slider(0.01:0.01:10, default=2.0, show_value=true)) 
 """
 
 # ╔═╡ 452c5aad-e30a-4eaf-9514-875d3a4dbae5
@@ -228,7 +240,7 @@ let
 	x = 0.0:0.01:10.0
 	y = sqrt.(x)
 	plot(x, y, xlabel=L"x", ylabel=L"y", label=L"x^2", 
-		legend=:bottomright, xlim=(0,10), ylim=(0,4), title="Diferenças finitas de 1ᵃ ordem")
+		legend=:bottomright, xlim=(0,10), ylim=(0,4), title="Diferenças finitas de 2ᵃ ordem")
 	x₀ = x0
 	y₀ = √x₀
 	if x0 - δx < 0
@@ -269,7 +281,7 @@ derivada1(f, x, Δx) = (f(x+Δx) - f(x)) / Δx
 derivada2(f, x, Δx) = (f(x+Δx) - f(x-Δx)) / 2Δx
 
 # ╔═╡ 8de4385a-c962-43b6-86a7-2a68d366d9af
-Δx = 1 ./ 2 .^(1:24)
+Δx = 1 ./ 2 .^(1:30)
 
 # ╔═╡ 762f1da5-9264-4dc2-b475-b3f92cb27af7
 deriv_raiz(x) = 1/(2*sqrt(x))
@@ -294,7 +306,7 @@ let # Um bloco para isolar o ambiente
 	ε₂ = abs.(derivada2.(sqrt, x, Δx) .- dS)
 	ε = abs.(derivada2.(babilonia8, x, Δx) .- dS)
 	
-	plot(Δx, ε₁, xaxis=:log, yaxis=:log, marker=:diamond, label="ε₁", legend=:topleft)
+	plot(Δx, ε₁, xaxis=:log, yaxis=:log, marker=:diamond, label="ε₁", xlabel="Δx", ylabel="y", legend=:topleft)
 	plot!(Δx, ε₂, xaxis=:log, yaxis=:log, marker=:circle, label="ε₂")
 	plot!(Δx, ε, xaxis=:log, yaxis=:log, marker=:ltriangle, label="babilonia8")
 end
@@ -312,7 +324,10 @@ D₁(f,Δx=1e-3) = x -> derivada1(f, x, Δx)
 D₂(f,Δx=1e-3) = x -> derivada2(f, x, Δx)	
 
 # ╔═╡ cb24b070-4273-4d1d-afe7-ca0bdcc218bc
-der1 = D₂(sqrt, 1e-3)
+der1 = D₂(sqrt, 1e-5)
+
+# ╔═╡ 08e91e91-fc3a-4fd3-b695-c76b30be222d
+der1(10) - deriv_raiz(10)
 
 # ╔═╡ b0b68bf1-717b-4205-877d-0c1e5b8d39ca
 der1(2) - deriv_raiz(2)
@@ -331,12 +346,15 @@ Na verdade isso consegue juntar o melhor dos dois mundos
 [Estou me baseando nesta apresentação no Youtube do Alan Edelman](https://www.youtube.com/watch?v=vAp6nUMrKYg)
 """
 
-# ╔═╡ d62c3f3d-cab7-431a-9026-c8475256d091
+# ╔═╡ b42d7427-c10c-4dbb-876a-eeaf756584f9
 
+
+# ╔═╡ d62c3f3d-cab7-431a-9026-c8475256d091
+[D(1,2) D(2,3); D(3,4) D(4,5)]
 
 # ╔═╡ c8b40a4c-8d8f-44bb-8d3f-47d6b53a142a
-let x = π
-	babilonia(D((x,1))), sqrt(x), 0.5/sqrt(x)
+let x = 2
+	babilonia(D((x,1))), babilonia(x), (sqrt(x), 0.5/sqrt(x))
 end
 
 # ╔═╡ e0a9c6a5-05ef-464c-ae80-9dd4b19cd97c
@@ -347,6 +365,21 @@ dp = derivative(p)
 
 # ╔═╡ ecda08d9-f17d-4eca-9673-555da1be3f74
 (p(1.0),dp(1.0)), p(D((1,1)))
+
+# ╔═╡ c6edc191-673f-48b3-8d6e-6b785817ef3a
+function babiloniaX(x::Float64, N=8)
+	t = (1+x)/2
+	for i in 2:N
+		t = (t + x / t) / 2
+	end
+	return t
+end
+
+# ╔═╡ 9daaedc8-9a0c-488b-affd-36e88a28b5cc
+babiloniaX(1.0)
+
+# ╔═╡ f8629ea9-f3b5-40c0-9e63-19babe987225
+methods(sin, (Float64,))
 
 # ╔═╡ fafee7b8-d92e-4b0a-bad5-20dfcec78cb9
 md"""
@@ -366,7 +399,7 @@ f₁(x) = x^2 + cos(x)
 df(x) = 2x - sin(x)
 
 # ╔═╡ 4876b304-f789-4c9e-84de-67c46a7c9b20
-ForwardDiff.derivative(f₁, 1.0), df(1.0)
+ForwardDiff.derivative(f₁, 1.0) , df(1.0)
 
 # ╔═╡ 86b96cf0-8eda-498d-99eb-acff4bcd06e5
 md"""
@@ -378,6 +411,9 @@ $f(x,y,z) = xy + zxy$
 
 # ╔═╡ 26d64a12-5aec-4d36-8ed8-2b8c90dba71d
 f₂(x) = x[1]*x[2] + x[3]*x[1]*x[2]
+
+# ╔═╡ 46e36ace-f34e-4681-9cc3-c953eb287007
+
 
 # ╔═╡ 1f14b9fe-832c-4631-b189-5465b62c7554
 # se você quiser fazer isso explicitamente
@@ -397,7 +433,13 @@ f₂( [1,2,3] )
 f₃(x,y,z) = x*y + z*x*y
 
 # ╔═╡ 7b2124c3-d8d8-45f1-b1ee-0dcecc4a90a1
-f₃(x) = f₃(x...)
+f₃(x) = f₃(x...) # = f₃(x[1], x[2], x[3])
+
+# ╔═╡ 6c5d464b-8607-48d5-9876-43fa28414cc1
+ftemp(x) = f₃(x[1], x[2], x[3])
+
+# ╔═╡ 62d23353-c042-466b-a7c9-5329a2e92a74
+ftemp([1,2,3,4])
 
 # ╔═╡ e4274c7d-4f0f-4174-a4b6-e9e46362ba51
 f₃(1,2,3)
@@ -441,6 +483,27 @@ f₄(x) = [prod(x), x[2], x[3]]
 # ╔═╡ b819c9c9-e4d7-44ea-8269-f52ca7ff5831
 ForwardDiff.jacobian(f₄, [1,2,3])
 
+# ╔═╡ 03ba9563-aa55-4024-9a82-b6efcd72958f
+md"""
+# Exercício: Método de Newton
+
+O objetivo é resolver a equação algébrica não linear
+
+$f(x) = 0$
+
+A partir  de um chute inicial $x_0$, vamos tentar achar uma aproximação melhor:
+
+$f(x_0 + \delta x) \approx f(x_0) + \delta x \cdot \left.\frac{df}{dx}\right|_{x=x_0} = 0$
+
+Assim, 
+$x_{n+1} = x_n + \delta x$
+
+onde 
+
+$\delta x = - \frac{f(x_n)}{\left.\frac{df}{dx}\right|_{x=x_n}}$
+
+"""
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -466,7 +529,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.8.0"
 manifest_format = "2.0"
-project_hash = "e1066dab6d82450edccaeca0e45387a97821afbc"
+project_hash = "1fb3b69f9ecbb68f837db5e386f191f49f134a4c"
 
 [[deps.AbstractAlgebra]]
 deps = ["GroupsCore", "InteractiveUtils", "LinearAlgebra", "MacroTools", "Markdown", "Random", "RandomExtensions", "SparseArrays", "Test"]
@@ -1893,9 +1956,9 @@ version = "1.4.1+0"
 # ╔═╡ Cell order:
 # ╟─53a22568-31ca-11ed-3c1e-a71909be6858
 # ╠═94f84843-dc9f-4f67-9944-948cb3255669
-# ╠═65874130-d2c1-4819-a9e1-b36211747c60
+# ╟─65874130-d2c1-4819-a9e1-b36211747c60
 # ╟─29062981-c472-4dfc-9733-6a1eac5fdf3e
-# ╠═7db0feca-3d96-4d5a-b89a-e318cb4a394e
+# ╟─7db0feca-3d96-4d5a-b89a-e318cb4a394e
 # ╠═b455fd61-b439-4382-b472-fdacfd4bf32c
 # ╠═327607f6-150d-405f-bcf7-09c57cca3527
 # ╠═bff6ae5a-a107-4c75-ac4e-0e97f7ca1b3d
@@ -1904,14 +1967,18 @@ version = "1.4.1+0"
 # ╟─195285c6-26a1-4f9d-a631-0a447fb0c7f6
 # ╟─f0e45b42-9951-4e9e-876c-3db05a26aacd
 # ╠═b5139608-1c34-4e74-8b13-df295054197b
+# ╠═f3eb1135-a98b-41c5-b771-b29173e6b5a1
+# ╠═b9c947aa-f357-4582-89f1-6e4b3511d072
 # ╠═8cea8292-c9ba-4e73-b03f-9c84691d9879
 # ╟─9c0115f5-6991-48d4-bedd-2746fcd59e9f
 # ╠═1a49d5f4-a817-4433-ad46-d9850b96f5cf
 # ╠═99b24a21-8b81-4844-a5f6-6a449da90029
+# ╠═9c7b466c-97c2-4ffc-baf4-43e600c09b97
 # ╠═b5d95f86-0cd8-4707-86dc-37f6119e94da
 # ╠═dfacc35b-fa6c-4237-a547-3e82057d5817
 # ╠═0677408f-79c2-4382-b64a-145fccec5c5a
 # ╠═37b32b3f-3850-46b9-a63a-a058f37c57d8
+# ╠═f49f18da-b792-4e16-a9b5-903f957abdd6
 # ╠═b02cd2da-8502-4fba-8376-1f37a6a9feb8
 # ╟─07dc7322-e806-4d2f-8d53-eada348dc1c4
 # ╟─452c5aad-e30a-4eaf-9514-875d3a4dbae5
@@ -1925,19 +1992,24 @@ version = "1.4.1+0"
 # ╟─ac824c99-4ca1-44f8-810b-08c9dee9bd49
 # ╠═fd9c44f3-86a1-4b8d-a0d4-f11a7b475eec
 # ╠═bdff858f-bf6a-4342-b1c0-bdd9c01d6c0f
-# ╠═7d9bd21b-0dbc-4dbe-aa00-a0a217e3b4e7
+# ╟─7d9bd21b-0dbc-4dbe-aa00-a0a217e3b4e7
 # ╠═ae71ba2c-feef-4960-9d95-f4d2355e6557
 # ╠═f91e73d7-ef8d-4f62-8b02-812fb8aa6f94
 # ╠═cb24b070-4273-4d1d-afe7-ca0bdcc218bc
+# ╠═08e91e91-fc3a-4fd3-b695-c76b30be222d
 # ╠═b0b68bf1-717b-4205-877d-0c1e5b8d39ca
 # ╟─ad3d09eb-6187-47a1-a06e-c3014e6a6337
 # ╠═d5a01c4a-4004-430e-94d9-208d093e298f
+# ╠═b42d7427-c10c-4dbb-876a-eeaf756584f9
 # ╠═d62c3f3d-cab7-431a-9026-c8475256d091
 # ╠═c8b40a4c-8d8f-44bb-8d3f-47d6b53a142a
 # ╠═ee2f6ffc-a8a5-4fd7-9290-50972d416421
 # ╠═e0a9c6a5-05ef-464c-ae80-9dd4b19cd97c
 # ╠═0fcc886d-a3cd-48b9-9e45-9a292985a59f
 # ╠═ecda08d9-f17d-4eca-9673-555da1be3f74
+# ╠═c6edc191-673f-48b3-8d6e-6b785817ef3a
+# ╠═9daaedc8-9a0c-488b-affd-36e88a28b5cc
+# ╠═f8629ea9-f3b5-40c0-9e63-19babe987225
 # ╟─fafee7b8-d92e-4b0a-bad5-20dfcec78cb9
 # ╠═321b5395-0b93-4697-911d-e84cf56215d7
 # ╠═3fb290b7-6b7d-47bc-8060-715314df5c29
@@ -1945,12 +2017,15 @@ version = "1.4.1+0"
 # ╠═4876b304-f789-4c9e-84de-67c46a7c9b20
 # ╟─86b96cf0-8eda-498d-99eb-acff4bcd06e5
 # ╠═26d64a12-5aec-4d36-8ed8-2b8c90dba71d
+# ╠═46e36ace-f34e-4681-9cc3-c953eb287007
 # ╠═1f14b9fe-832c-4631-b189-5465b62c7554
 # ╠═a7207286-0b04-440e-a1a5-bc7a22c80bb5
 # ╠═775d7614-6aa3-47ad-9db3-b1c75674d03c
 # ╠═1d210ec7-3e5d-454f-94d4-3b91c5f2d820
 # ╠═4bf12e8a-0d99-44af-8a4b-30e373b6d5fb
 # ╠═7b2124c3-d8d8-45f1-b1ee-0dcecc4a90a1
+# ╠═6c5d464b-8607-48d5-9876-43fa28414cc1
+# ╠═62d23353-c042-466b-a7c9-5329a2e92a74
 # ╠═e4274c7d-4f0f-4174-a4b6-e9e46362ba51
 # ╠═4d2c1a68-6f30-45c7-b532-24b10ff18b08
 # ╟─700a2ae4-6cda-4520-bfa2-870ff3a5a8e6
@@ -1958,5 +2033,6 @@ version = "1.4.1+0"
 # ╟─88118ea5-3759-48b9-a1a7-19634284cc4e
 # ╠═bf27a0d0-2eb5-4bd2-9243-31b51e7565a3
 # ╠═b819c9c9-e4d7-44ea-8269-f52ca7ff5831
+# ╟─03ba9563-aa55-4024-9a82-b6efcd72958f
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
