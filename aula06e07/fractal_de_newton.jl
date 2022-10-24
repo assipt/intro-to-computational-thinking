@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.11
+# v0.19.12
 
 using Markdown
 using InteractiveUtils
@@ -226,7 +226,7 @@ Número de Pixels = $(@bind Np Slider(100:10:5000, default=600, show_value=true)
 let
 	x = range(xc-L/2, xc+L/2, length=Np)
 	y = range(yc-L/2, yc+L/2, length=Np)
-	[iter_to_color(resolver_newton(p, dp, x + y*im)..., r, ctable,0.5,3,60) 
+	[iter_to_color(resolver_newton(p, dp, x + y*im)..., r, ctable,0.5,5,30) 
 		for y in reverse(y), x in x]
 end
 
@@ -253,9 +253,9 @@ Polynomials = "~3.2.0"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.0"
+julia_version = "1.8.2"
 manifest_format = "2.0"
-project_hash = "91f10d66f44bf57bdafb4d597cf055ca6d6b2d08"
+project_hash = "10268d75d361e04c72f6195e49382e49c4bfd658"
 
 [[deps.AbstractFFTs]]
 deps = ["ChainRulesCore", "LinearAlgebra"]
@@ -727,7 +727,7 @@ version = "1.0.0"
 [[deps.Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
-version = "1.10.0"
+version = "1.10.1"
 
 [[deps.TensorCore]]
 deps = ["LinearAlgebra"]

@@ -164,7 +164,7 @@ md"""
 Quando propusemos usar o método de diferenças finitas, especificamos um $\Delta x$ constante. Lembrando que queremos aproximar a derivada apenas, que tal usarmos dois valores iniciais $x_0$ e $x_1$. Com estes valores, temo $f(x_0)$ e $f(x_1)$. A reta ligando estes dois valores é uma aproximação da derivada na região dos pontos. Assim, 
 a reta passando por estes dois pontos é dada por $y= a \cdot x + b$ com 
 
-$a = \frac{f(x_1) - f(x_0)}{x_2-x_0}$
+$a = \frac{f(x_1) - f(x_0)}{x_1-x_0}$
 
 e
 
@@ -220,7 +220,7 @@ A função `newton_modificado_visual` permite ver como funciona o método de New
 
 # ╔═╡ 77b02c85-0cfa-488b-a96a-f02363ee1a2f
 md"""
-Número de iterações: $(@bind N Slider(1:6, show_value=true))
+Número de iterações: $(@bind N Slider(1:8, show_value=true))
 """
 
 # ╔═╡ 442ab948-eaff-4187-8af8-77c27b9e0cce
@@ -249,7 +249,7 @@ function newton_modificado_visual(f, n, xrange, x₀, x₁, ymin, ymax)
 end
 
 # ╔═╡ 12d0fd62-db33-4bfa-bfd6-1a975fba33c2
-newton_modificado_visual(fun1, N, -1:0.01:5, 3, 2.7, -2, 10)
+newton_modificado_visual(fun1, N, -1:0.01:5, 3, 2.7, -2, 2)
 
 # ╔═╡ 7dde482c-a937-46cc-834c-38fb3fb69bdc
 md"""
@@ -417,7 +417,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.8.2"
 manifest_format = "2.0"
-project_hash = "e013c74a4b2cdb72765c9fccead2c51d2437da8b"
+project_hash = "c4cc330ad6478312dd218787c4ba180f2ee34faa"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -1425,6 +1425,6 @@ version = "1.4.1+0"
 # ╠═6ab2ba35-ab2f-4cda-bc9a-8fb13db5a39f
 # ╠═3b99b073-40be-4ad6-ba63-baa4863b7de7
 # ╟─f8af85b2-abee-44f8-937b-f629a9e1180a
-# ╠═e5994ca6-44b0-4240-9afe-94596305d8bf
+# ╟─e5994ca6-44b0-4240-9afe-94596305d8bf
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
